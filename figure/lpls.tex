@@ -1,0 +1,52 @@
+\documentclass{standalone}
+
+\usepackage{pgf,tikz}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usetikzlibrary{matrix, arrows, positioning, shapes.arrows}
+\newcommand{\xyht}{2cm}
+\newcommand{\yzwt}{2cm}
+\newcommand{\xwt}{2cm}
+\newcommand{\vecwt}{1mm}
+\newcommand{\zht}{2cm}
+\newcommand{\vecdist}{1mm}
+
+\begin{document}
+	\tikzset{
+		every node/.append style = {inner sep = 0.7mm},
+		EdgeStyleOut/.append style = {shorten >= 0.1cm, shorten <= 0.1cm, ->, >=latex, blue},
+		EdgeStyleIn/.append style = {shorten >= 0.1cm, shorten <= 0.1cm, <-, >=latex, red},
+	}
+	\begin{tikzpicture}
+	\node[rectangle, draw, minimum width = \yzwt, minimum height = \xyht] (resp) {Y};
+	\node[rectangle, draw, minimum width = \yzwt, minimum height = \vecwt, above = \vecdist of resp] (yload) {};
+	\node[rectangle, draw, minimum width = \vecwt, minimum height = \xyht, right = \vecdist of resp] (yscore) {};
+	
+	\node[rectangle, draw, minimum width = \xwt, minimum height = \xyht, right = 1.5cm of resp] (pred) {X};
+	\node[rectangle, draw, minimum width = \xwt, minimum height = \vecwt, above = \vecdist of pred] (xload) {};
+	\node[rectangle, draw, minimum width = \vecwt, minimum height = \xyht, left = \vecdist of pred] (xscore) {};
+	
+	\node[rectangle, draw, minimum width = \yzwt, minimum height = \zht, above = 1.5cm of resp] (predz){Z};
+	\node[rectangle, draw, minimum width = \yzwt, minimum height = \vecwt, below = \vecdist of predz] (zload) {};
+	\node[rectangle, draw, minimum width = \vecwt, minimum height = \zht, right = \vecdist of predz] (zscore) {};
+	
+%	\node[minimum width = \xwt, minimum height = \zht, align = left, above = 2cm of pred](legend) {
+		\matrix[above = 2cm of pred, column sep = 2mm, anchor = base west, xshift = -1.5cm]{
+			\draw[yshift = 1.2mm, blue, ->, >=latex] (-0.5,0) -- (0,0); & \node[] {\scriptsize Endo-LPLS};\\
+			\draw[yshift = 1.2mm, red, <-, >=latex] (-0.5,0) -- (0,0); & \node[] {\scriptsize Exo-LPLS};\\			
+%		};
+%		\begin{minipage}{0.1\textwidth}
+%		\footnotesize
+%		\begin{align*}
+%		\color{blue}{\longrightarrow} & \text{Endo-LPLS} \\
+%		\color{red}{\longleftarrow} & \text{Exo-PLS}
+%		\end{align*}
+%		\end{minipage}
+		};
+	
+	\draw[EdgeStyleOut] (zload.230) -- (yload.130);
+	\draw[EdgeStyleIn] (zload.310) -- (yload.50);
+	\draw[EdgeStyleOut] (xscore.140) -- (yscore.40);
+	\draw[EdgeStyleIn] (xscore.220) -- (yscore.320);	
+	\end{tikzpicture}
+\end{document}

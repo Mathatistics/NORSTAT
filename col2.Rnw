@@ -1,0 +1,26 @@
+% !Rnw root = main.Rnw
+\begin{column}{.49\textwidth}
+      \begin{beamercolorbox}[center,wd=\textwidth]{postercolumn}
+        % tweaks the width, makes a new \textwidth
+        \begin{minipage}[T]{.98\textwidth} 
+          \parbox[t][\topcolumn]{\textwidth}{ 
+          % must be some better way to set the the height, 
+          % width and textwidth simultaneously
+          % Since all columns are the same length, it is all nice and tidy.  
+          % You have to get the height empirically
+          % ---------------------------------------------------------%
+          % fill each column with content
+            \begin{block}{U-shaped Partial Least Square Regression (UPLS)}
+              \begin{figure}[!h]
+              	\includegraphics[width = 0.49\textwidth]{figure/upls}
+              \end{figure}
+            \end{block}
+            \vfill
+            \begin{block}{Conclusion}
+            \end{block}
+          }
+          % ---------------------------------------------------------%
+          % end the column
+        \end{minipage}
+      \end{beamercolorbox}
+\end{column}

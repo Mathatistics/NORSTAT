@@ -1,0 +1,25 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows, positioning}
+
+\begin{document}
+	\tikzset{
+		EdgeStyle/.append style = {->, >=stealth, bend left, dashed},
+	}
+	\begin{tikzpicture}
+	\node[rectangle, draw, minimum width = 1cm, minimum height = 3cm, label = below:\scriptsize resp] (resp) {Y};
+	\node[rectangle, draw, minimum width = 1cm, minimum height = 0.1cm, above = 0.2cm of resp, label = above:q] (yload) {};
+	\node[rectangle, draw, minimum width = 0.1cm, minimum height = 3cm, right = 0.2cm of resp, label = above:u] (yscore) {};
+	
+	\node[rectangle, draw, minimum width = 5cm, minimum height = 3cm, right = 1.5cm of resp, label = below:\scriptsize Predictor] (pred) {X};
+	\node[rectangle, draw, minimum width = 5cm, minimum height = 0.1cm, above = 0.2cm of pred, label = above:w] (xload) {};
+	\node[rectangle, draw, minimum width = 0.1cm, minimum height = 3cm, left = 0.2cm of pred, label = above:t] (xscore) {};
+	
+	
+	\draw [EdgeStyle] (yscore.84) -| (xload.186);
+	\draw [EdgeStyle] (xload.356) |- (xscore.276);
+	\draw [EdgeStyle] (xscore.264) -| (yload.200);
+	\draw [EdgeStyle] (yload.340) |- (yscore.96);
+	\end{tikzpicture}
+\end{document}

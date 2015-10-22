@@ -1,0 +1,39 @@
+\documentclass{standalone}
+
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows, positioning}
+\newcommand{\xyht}{1.5cm}
+\newcommand{\yzwt}{2cm}
+\newcommand{\xwt}{2cm}
+\newcommand{\vecwt}{1mm}
+\newcommand{\zht}{2.5cm}
+\newcommand{\wht}{2cm}
+\newcommand{\nodist}{1cm}
+
+\begin{document}
+	\tikzset{
+		EdgeStyle/.append style = {shorten >= 0.1cm, shorten <= 0.1cm, ->, >=latex, bend left, line width = 0.03cm, black!60},
+		every node/.append style = {inner sep = 0.5mm}
+	}
+	\begin{tikzpicture}
+	\node[rectangle, draw, minimum width = \yzwt, minimum height = \xyht, label = below:\scriptsize Resp] (resp) {Y};
+	\node[rectangle, draw, minimum width = \yzwt, minimum height = \vecwt, above = 0.1cm of resp] (yload) {};
+	\node[rectangle, draw, minimum width = \vecwt, minimum height = \xyht, right = 0.1cm of resp] (yscore) {};
+	
+	\node[rectangle, draw, minimum width = \xwt, minimum height = \xyht, right = \nodist of resp, label = below:\scriptsize Predictor] (pred) {X};
+	\node[rectangle, draw, minimum width = \xwt, minimum height = \vecwt, above = 0.1cm of pred] (xload) {};
+	\node[rectangle, draw, minimum width = \vecwt, minimum height = \xyht, left = 0.1cm of pred] (xscore) {};
+	
+	\node[rectangle, draw, minimum width = \yzwt, minimum height = \zht, label = {[align = center]above:{\scriptsize Background \\ \scriptsize for Y}}, above = \nodist of resp] (predz){Z};
+	\node[rectangle, draw, minimum width = \yzwt, minimum height = \vecwt, below = 0.1cm of predz] (zload) {};
+	\node[rectangle, draw, minimum width = \vecwt, minimum height = \zht, right = 0.1cm of predz] (zscore) {};	
+	
+	\node[rectangle, draw, minimum width = \xwt, minimum height = \wht, label = {[align = center]above:{\scriptsize Background \\ \scriptsize for X}}, above = \nodist of pred] (predw){W};
+	\node[rectangle, draw, minimum width = \xwt, minimum height = \vecwt, below = 0.1cm of predw] (wload) {};
+	\node[rectangle, draw, minimum width = \vecwt, minimum height = \wht, left = 0.1cm of predw] (wscore) {};
+	
+	\draw[EdgeStyle] (zload) -- (yload);
+	\draw[EdgeStyle] (xscore) -- (yscore);
+	\draw[EdgeStyle] (wload) -- (xload);
+	\end{tikzpicture}
+\end{document}

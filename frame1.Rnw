@@ -1,0 +1,60 @@
+% !Rnw root = main.Rnw
+\begin{columns}
+    % ---------------------------------------------------------%
+    % Set up a column 
+<<col1, child='col1.Rnw'>>=
+@
+    
+    % ---------------------------------------------------------%
+    % Set up a column 
+<<col2, child='col2.Rnw'>>=
+@
+
+    % ---------------------------------------------------------%
+    % end the column
+\end{columns}
+\vspace{1cm}
+\begin{columns}
+\begin{column}{0.98\textwidth}
+\begin{beamercolorbox}[center, wd=\textwidth]{postercolumn}
+  \begin{minipage}[T]{0.99\textwidth}  % tweaks the width, makes a new \textwidth
+    \parbox[t][\bottomcolumn]{\textwidth}{ 
+      % ---------------------------------------------------------%
+      
+      % fill each column with content            
+\begin{block}{Application Example}
+\newcommand{\getpic} [2] {\includegraphics[width = #1\textwidth]{#2}}
+\begin{columns}[b]
+\begin{column}{0.6\textwidth}
+\tikzset{
+	EdgeStyle/.append style = {->, >=latex, line width = 0.5cm, gray, shorten <= -0.5cm, shorten >= -0.75cm},
+}
+\begin{figure}
+\begin{tikzpicture}[ampersand replacement = \&]
+\matrix[row 1/.style = {anchor = south}, row 2/.style = {anchor = north}, row sep = 1cm, column sep = 1.3cm]
+{
+	\node [above delimiter = \{, label = {[yshift=1cm, align=center]above:{\footnotesize Scores in nine courses}}] 
+	   (ybg) {\getpic{0.38}{heatMapW}}; \& 
+	\node [above delimiter = \{, label = {[yshift=1cm, align=center]above:{\footnotesize 56 personality type}}] 
+	  (xbg) {\getpic{0.62}{heatMapZ}};\\
+	\node (y) {\getpic{0.38}{heatMapY}}; \& 
+	\node (x) {\getpic{0.62}{heatMapX}};\\
+};
+
+% Draw Arrows
+\draw[EdgeStyle] (ybg) -- (y);
+\draw[EdgeStyle] (x) -- (y);
+\draw[EdgeStyle] (xbg) -- (x);
+\end{tikzpicture}
+\end{figure}
+\end{column}
+\begin{column}{0.4\textwidth}
+
+\end{column}
+\end{columns}
+\end{block}
+}
+\end{minipage}
+\end{beamercolorbox}
+\end{column}
+\end{columns}
