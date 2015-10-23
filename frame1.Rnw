@@ -23,33 +23,33 @@
       
       % fill each column with content            
 \begin{block}{Application Example}
-\newcommand{\getpic} [2] {\includegraphics[width = #1\textwidth]{#2}}
-\begin{columns}[b]
-\begin{column}{0.6\textwidth}
-\tikzset{
-	EdgeStyle/.append style = {->, >=latex, line width = 0.5cm, gray, shorten <= -0.5cm, shorten >= -0.75cm},
-}
-\begin{figure}
-\begin{tikzpicture}[ampersand replacement = \&]
-\matrix[row 1/.style = {anchor = south}, row 2/.style = {anchor = north}, row sep = 1cm, column sep = 1.3cm]
-{
-	\node [above delimiter = \{, label = {[yshift=1cm, align=center]above:{\footnotesize Scores in nine courses}}] 
-	   (ybg) {\getpic{0.38}{heatMapW}}; \& 
-	\node [above delimiter = \{, label = {[yshift=1cm, align=center]above:{\footnotesize 56 personality type}}] 
-	  (xbg) {\getpic{0.62}{heatMapZ}};\\
-	\node (y) {\getpic{0.38}{heatMapY}}; \& 
-	\node (x) {\getpic{0.62}{heatMapX}};\\
-};
-
-% Draw Arrows
-\draw[EdgeStyle] (ybg) -- (y);
-\draw[EdgeStyle] (x) -- (y);
-\draw[EdgeStyle] (xbg) -- (x);
-\end{tikzpicture}
-\end{figure}
+\begin{columns}[T, onlytextwidth]
+\begin{column}{0.35\textwidth}
+\begin{description}
+\item[\textbf{Hypothesis}]\hfill\\
+	\begin{itemize}
+		\item The personality type of a student have influence on there performance on the courses. 
+		\item The better/poor score in a course of a student may be due to the inappropriate choice of course or the teaching methods which does not corresponds to the personality types of that student.
+	\end{itemize}
+\item[\textbf{Materials}]\hfill\\
+	\begin{itemize}
+		\item Personality test data fro 50 variables from 288 students through questionnaire (\textbf{X})
+		\item Scores 50 students in 9 courses constitute matrix \textbf{Y}
+		\item Personality test data (\textbf{W}) for 2200 persons from various fields are used as background information for \textbf{X}
+		\item Scores of 5000 students in the same 9 courses are also included as background information for \textbf{Y}
+	\end{itemize}
+\item[\textbf{Missing Value Problem}]\hfill\\
+	All the student considered may have taken all the 9 courses considered which creates lots of missing values. Following approaches are intended to apply,
+	\begin{itemize}
+		\item Ignore the missing observations within the NIPALS loop
+		\item Replacing the missing value through interpolation or with nearest neighbour
+	\end{itemize}
+\end{description}
 \end{column}
-\begin{column}{0.4\textwidth}
-
+\begin{column}{0.6\textwidth}
+\begin{figure}
+\includegraphics[width = \textwidth]{figure/application}
+\end{figure}
 \end{column}
 \end{columns}
 \end{block}

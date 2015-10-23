@@ -25,14 +25,21 @@
   \institute[Norwegian University of Life Sciences (NMBU)]{\footnotesize Norwegian University of Life Sciences (NMBU), {\AA}s, Norway}
   \date[15 August, 2015]{15 August, 2015}
   
-  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newlength{\topcolumn}
-\setlength{\topcolumn}{0.5\textheight}
+\setlength{\topcolumn}{0.48\textheight}
 \newlength{\bottomcolumn}
-\setlength{\bottomcolumn}{0.5\textheight}
-
+\setlength{\bottomcolumn}{0.62\textheight}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[natbib=true, backend=bibtex]{biblatex}
+\addbibresource{references.bib}
+\renewcommand\bibfont{\small}
+\setbeamercolor*{bibliography entry title}{fg=black}
+\setbeamercolor*{bibliography entry author}{fg=black}
+\setbeamercolor*{bibliography entry location}{fg=black}
+\setbeamercolor*{bibliography entry note}{fg=black}
+\setbeamertemplate{bibliography item}[text]
 
 \begin{document}
 \begin{frame}[fragile]
@@ -44,8 +51,6 @@ invisible(lapply(req.pkgs, require, quietly = TRUE, warn.conflicts = FALSE, char
 <<loadData, echo=FALSE>>=
 load('Personalitydata.rdata')
 @
-
-
 <<block1, child='frame1.Rnw'>>=
 @
 \end{frame}

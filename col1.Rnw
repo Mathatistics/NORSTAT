@@ -7,107 +7,63 @@
             % ---------------------------------------------------------%
             
             % fill each column with content            
-            \begin{block}{Principal Component Regression} % Introduction Block
-            Lets consider a model,
-            \[ \mathbold{Y} = \boldsymbol{B}_\circ + \mathbold{XB} + \boldsymbol{E} \]
+            \begin{block}{Partial Least Square Regression} % Introduction Block
+            Lets consider a model with multiple response \textbf{Y}, predictor matrix \textbf{X} and error matrix \textbf{E} as,
+            \[ \mathbold{Y} = \boldsymbol{B}_\circ + \mathbold{XB} + \boldsymbol{E} \]            
+			\begin{columns}[t, onlytextwidth]
+				\column{0.34\textwidth}
+				\textbf{Usual Problems}\\
+					\begin{itemize}
+						\item Multicolinear Predictors
+						\item High Dimensional data
+						\item Large Number of predictors
+					\end{itemize}
+				\column{0.64\textwidth}
+				\textbf{Partial Least Square Regression}\\
+					Partial Least Square (PLS) regression is a,
+					\begin{itemize}
+						\item Method that can explore the underlying relation of predictor with response through latent structure
+						\item Method that can gather maximum covariance structure between \textbf{X} and \textbf{Y} in first few components
+					\end{itemize}
+			\end{columns}
+			\vspace{1cm}
             \begin{columns}[b]
-              \begin{column}{0.49\textwidth}
+              \begin{column}{0.45\textwidth}
                 \begin{figure}
                 \centering
-                  \includegraphics[width = 0.95\textwidth]{figure/plsr}
-                  \caption{NIPALS algorithm for performing PLS regression}
+                  \includegraphics[width = 0.9\textwidth]{figure/plsr}
+                  \caption{NIPALS algorithm for performing PLS regression. Starting from any arbitrary column \textbf{u}, the algorithm converges after some loops. For each component required, the algorithm creats loadings, scores for \textbf{X} and \textbf{Y} with coefficients estimates. After extraction of each component, the \textbf{X} and \textbf{Y} matrices are deflated ensuring that the components obtained are independent to each other.}
                   \label{fig:pls}
                 \end{figure}
-              \end{column}
-              \hspace{5pt}{\color{gray}\vrule width 2pt} \hspace{10pt}%
-              \begin{column}{0.49\textwidth}
-              \begin{block}{NIPALS Algorithm}
-                bla bla bla
-              \end{block}
-              \end{column}
-            \end{columns}
-            \begin{description}
-              \item[\textsc{Problems:}]\hfill\\
-              \begin{itemize}
-                \item Multicolinear Predictors
-                \item High Dimensional data
-                \item Large Number of predictors
-              \end{itemize}
-              \item[\textsc What is PLS?]\hfill\\
-              \begin{itemize}
-                \item Method that can explore the underlying relation of predictor with response through latent structure
-                \item Method that can gather maximum covariance structure between $\mathbold{X}$ and $\mathbold{Y}$ in first few components
-              \end{itemize}
-              \end{description}
+	           \end{column} 
+              \begin{column}{0.45\textwidth}
+              		\begin{exampleblock}{NIPALS Algorithm}
+           			\begin{align*}
+           				\mathtt{[X0, Y0]} & \leftarrow \mathtt{scale(X, Y)} \\
+           				\mathtt{w} & \leftarrow \mathtt{X_a^t} \\
+           				\mathtt{w} & \leftarrow \mathtt{w/|w|} \\
+           				\mathtt{t} & \leftarrow \mathtt{X_0w} \\
+           				\mathtt{p} & \leftarrow \mathtt{X_a^tt(t't)^{-1}}\\
+           				\mathtt{q} & \leftarrow \mathtt{Y_a^tt(t't)^{-1}}
+              	\end{align*}	
+              		\texttt{--- Deflation ---}
+              	\begin{align*}
+              		\mathtt{X_{a+1}} & \leftarrow \mathtt{X_a - tp^t} \\
+             			\mathtt{Y_{a+1}} & \leftarrow \mathtt{Y_a - tq^t} 
+	             	\end{align*}	
+           			\texttt{---  Coefficients Estimate ---}
+             		\[\mathtt{\hat{\mathbf{B}}} \leftarrow \mathtt{\mathbf{W(P^tW)^{-1}Q}}\]
+              		\end{exampleblock}
+         \end{column}% End of Column: NIPALS Algorithm
+            %% -----------------------------------------------%%  
+            \end{columns} % End of PLS upper columns
+            %% -----------------------------------------------%%
             \end{block}
-            \vfill
-            \begin{block}{L-PLS and its varients (Exo-LPLS and Endo-LPLS)} % Visulazation block
-            \begin{columns}[b]
-              \begin{column}{0.5\textwidth}
-                \begin{figure}
-                \centering
-                  \includegraphics[width = \textwidth]{figure/lpls}
-                  \caption{Extension of PLS including some background information}
-                  \label{fig:lpls}
-                \end{figure}
-              \end{column}
-              \begin{column}{0.5\textwidth}
-              \normalsize bla bla bla ...
-              \end{column}
-            \end{columns}            
-<<heatMap, echo = FALSE, fig.keep='none', include=FALSE>>=
-#Plot of personality-score matrix
-X.sc <- scale(X)
-X.sc <- X.sc[-c(125,287),] #Removing two students without personality score
-Z.sc <- scale(Z)
-
-hmap.x <- heatmap(X.sc, keep.dendro = T, na.rm = TRUE)
-hmap.z <- heatmap(Z.sc, keep.dendro = T, na.rm = TRUE)
-
-x.r <- hmap.x$rowInd; x.c <- hmap.x$colInd
-z.r <- hmap.z$rowInd; z.c <- hmap.z$colInd
-@
-<<heatMapPrint, echo=FALSE, include=FALSE>>=
-getMap <- function(X, row.idx = NULL, col.idx = NULL, filename = NULL, wth = 8, ht = 4, color = heat.colors(nrow(X)), n.stud = 588, side = 2) {
-  pdf(filename, width = wth, height = ht)
-  par(mar = c(10,2,1,2), family = 'Palatino')
-  row.idx <- if (is.null(row.idx)) TRUE else row.idx
-  col.idx <- if (is.null(col.idx)) TRUE else col.idx
-  image(t(X[row.idx, col.idx]), 
-        axes = F, col.main = "black", cex.lab = 0.5, 
-        col = color)
-  axis(1, at = seq(0, 1, length.out = dim(X)[2]), 
-       labels = colnames(X)[col.idx], 
-       las = 3, col.axis = "black")
-  mtext(paste(n.stud, 'number of Person'), side = side, line=1)
-  
-# ## Heatmap using ggplot2
-#   dataSet <- melt(X[row.idx, col.idx])
-#   dataSet$Var1 <- as.character(dataSet$Var1)
-#   print(ggplot(dataSet,
-#          aes_string(y = 'Var1',
-#              x = 'Var2')) +
-#     geom_tile(aes_string(fill = 'value')) +
-#     theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-#     scale_fill_gradient(low = 'yellow',
-#                         high = 'red',
-#                         space = 'Lab') +
-#     labs(x = '', y = '') +
-#     theme(axis.ticks.y = element_blank(),
-#           axis.text.y = element_blank(),
-#           legend.title = element_blank(),
-#           legend.position = 'none'))
-  dev.off()
-}
-
-getMap(X.sc, x.r, x.c, 'heatMapX.pdf', side = 4, n.stud = 288)
-getMap(Z.sc, z.r, x.c, 'heatMapZ.pdf', side = 4, n.stud = 2200, ht = 6)
-getMap(Y, rev(x.r), filename = 'heatMapY.pdf', 
-       wth = 5, ht = 4, color = rainbow(7, start = 0.01, end = 0.3), n.stud = 288)
-getMap(W, filename = 'heatMapW.pdf', 
-       wth = 5, ht = 7, color = rainbow(7, start = 0.01, end = 0.3), n.stud = 5000)
-@
-\end{block}
+            \begin{block}{References}
+            \nocite{saebo2008lpls, wold2001pls,saebo2010three}
+            {\scriptsize\printbibliography}
+            \end{block}
+            
 }
         \end{minipage}
       \end{beamercolorbox}
