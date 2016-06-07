@@ -3,37 +3,39 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \RequirePackage{tangocolors}
-\selectcolormodel{cmyk}
+\selectcolormodel{RGB}
 \mode<presentation>
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\setbeamercolor{headline}{fg=nmbu2,bg=white}
-\setbeamercolor{footline}{fg=nmbu2, bg=rmlwhite}
-\setbeamerfont{footline}{size=\large,series=\tt}
-\setbeamercolor{separation line}{bg=nmbu1}
-\setbeamercolor{title in headline}{fg=nmbu2}
-\setbeamercolor{author in headline}{fg=nmbu1}
-\setbeamercolor{institute in headline}{fg=nmbu3}
+\setbeamercolor{headline}{fg=white,bg=white}
+\setbeamercolor{footline}{fg=white}
+\setbeamerfont{footline}{size=\Large,series=\tt}
+\setbeamercolor{separation line}{bg=nmbucolor}
+\setbeamercolor{title in headline}{fg=white}
+\setbeamercolor{author in headline}{fg=white}
+\setbeamercolor{institute in headline}{fg=white}
 
-\setbeamercolor{framesubtitle}{fg=ta3orange, bg=nmbu2}
-\setbeamercolor{author in head/foot}{fg=nmbu1, bg=white}
-\setbeamercolor{title in head/foot}{fg=nmbu1, bg=white}
+\setbeamercolor{framesubtitle}{fg=white, bg=nmbucolor}
+\setbeamerfont{author in head/foot}{size=\large}
+\setbeamerfont{title in head/foot}{size=\large}
+\setbeamercolor{author in head/foot}{fg=white}
+\setbeamercolor{title in head/foot}{fg=white}
 
-\setbeamercolor*{normal text}{fg=tachameleon, bg=rmlwhite}
-\setbeamercolor*{block body}{bg=rmlgraylight,fg=black}
-\setbeamercolor*{block title}{fg=taorange,bg=nmbu2}
+\setbeamercolor*{normal text}{fg=nmbucolor, bg=white}
+\setbeamercolor*{block body}{bg=white,fg=black}
+\setbeamercolor*{block title}{fg=white,bg=nmbucolor}
 \setbeamerfont{block title}{size=\Large,series=\bf}
-\setbeamercolor{upper separation line head}{fg=nmbu1}
+\setbeamercolor{upper separation line head}{fg=nmbucolor}
 
-\setbeamercolor*{example body}{fg=rmlgraylight,bg=rmlblue}
-\setbeamercolor*{example text}{fg=taorange,bg=rmlblue}
-\setbeamercolor*{example title}{bg=rmlblue,fg=nmbu2}
+\setbeamercolor*{example body}{fg=white,bg=nmbucolor}
+\setbeamercolor*{example text}{fg=nmbucolor,bg=white}
+\setbeamercolor*{example title}{bg=nmbucolor,fg=white}
 
 %\setbeamercolor{alerted text}{fg=ta3gray}
 
 %\setbeamercolor{example text}{fg=taorange}
-\setbeamercolor{structure}{fg=ta3skyblue}
+\setbeamercolor{structure}{fg=nmbucolor}
 
 \setbeamertemplate{itemize items}[triangle]
 \setbeamertemplate{navigation symbols}{}  % no navigation on a poster
@@ -54,36 +56,49 @@
   \end{beamercolorbox}
 }
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setbeamertemplate{headline}{  
-  \leavevmode
-
-  \begin{beamercolorbox}[wd=\paperwidth]{headline}
-    \begin{columns}[T]
-      \begin{column}{.02\paperwidth}
-      \end{column}
-      \begin{column}{.7\paperwidth}
-        \vskip4ex
-        \centering
-        \usebeamercolor{title in headline}{\color{fg}\textbf{\LARGE{\inserttitle}}\\[2ex]}
-        \usebeamercolor{author in headline}{\color{fg}\large{\insertauthor}\\[1ex]}
-        \usebeamercolor{institute in headline}{\color{fg}\large{\insertinstitute}\\[1ex]}     
-      \end{column}
-      \begin{column}{.25\paperwidth}
-        \vskip4ex
-        \flushright
-          \includegraphics[width=0.8\linewidth]{logoFull}
-        
-        \vskip2ex
-      \end{column}
-      \begin{column}{.02\paperwidth}
-      \end{column}
-    \end{columns}
-    \vskip2ex
-  \end{beamercolorbox}
+	\leavevmode
+	\tikz{
+		\node[inner sep=0] (image) at (0,0){\includegraphics[width=\paperwidth]{figure/header.png}};
+		\node[anchor = right, xshift = -3cm] at (image.right) {
+			\parbox{0.85\linewidth}{
+				\flushright
+				\usebeamercolor{title in headline}{\color{fg}\textbf{\LARGE{\inserttitle}}\\[2ex]}
+				\usebeamercolor{author in headline}{\color{fg}\large{\insertauthor}\\[1ex]}
+				\usebeamercolor{institute in headline}{\color{fg}\normalsize{\insertinstitute}\\[1ex]}
+			}
+	};
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+%\setbeamertemplate{headline}{  
+%  \leavevmode
+%  \hbox{
+%  \begin{beamercolorbox}[wd=\paperwidth]{headline}
+%	\tikz{
+%		\node[inner sep=0] (image) at (0,0){\includegraphics[width=\paperwidth]{figure/header.png}};
+%		\node at (image.center) {
+%    \begin{columns}[T]
+%      \begin{column}{.22\paperwidth}
+%      \end{column}
+%      \begin{column}{.75\paperwidth}
+%        \vskip4ex
+%		\flushright
+%				\usebeamercolor{title in headline}{\color{fg}\textbf{\LARGE{\inserttitle}}\\[2ex]}
+%				\usebeamercolor{author in headline}{\color{fg}\large{\insertauthor}\\[1ex]}
+%				\usebeamercolor{institute in headline}{\color{fg}\normalsize{\insertinstitute}\\[1ex]}};
+%      \end{column}
+%      \begin{column}{.02\paperwidth}
+%      \end{column}
+%    \end{columns}
+%    \vskip6ex
+%	}
+%  \end{beamercolorbox}
+%}
 
   \begin{beamercolorbox}[wd=\paperwidth]{lower separation line head}
-    \rule{0pt}{3pt}
+%    \rule{0pt}{3pt}
   \end{beamercolorbox}
 }
 
@@ -103,20 +118,24 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setbeamertemplate{footline}{
   \begin{beamercolorbox}[wd=\paperwidth]{upper separation line foot}
-    \rule{0pt}{3pt}
+%    \rule{0pt}{1pt}
   \end{beamercolorbox}
   
   \leavevmode%
-  \begin{beamercolorbox}[ht=4ex,leftskip=1em,rightskip=1em]{author in head/foot}%
-    \texttt{http://mathatistics.com}
-    \hfill
-    \texttt{raju.rimal@nmbu.no}
-    \vskip1ex
-  \end{beamercolorbox}
-  \vskip0pt%
-  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line foot}
-    \rule{0pt}{3pt}
-  \end{beamercolorbox}
+	\tikz{
+			\node[inner sep=0] (imagefooter) at (0,0){\includegraphics[width=\paperwidth]{figure/footer.png}};
+			\node at (imagefooter.center) {
+			  \begin{beamercolorbox}[ht=5ex,leftskip=1em,rightskip=1em]{author in head/foot}%
+			  	{\textsf{\bf \LARGE Norwegian University of Life Sciences}}
+			  	\hfill
+			  	\texttt{\bf raju.rimal@nmbu.no}
+			  	\vskip1ex
+			  \end{beamercolorbox}
+	}}
+%  \vskip0pt%
+%  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line foot}
+%    \rule{0pt}{3pt}
+%  \end{beamercolorbox}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

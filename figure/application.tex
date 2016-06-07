@@ -9,12 +9,12 @@
 
 \begin{document}
 	\tikzset{
-		EdgeStyle/.append style = {->, >=latex, line width = 2.3mm, gray, shorten <= -2mm, shorten >= -1.5mm},
+		EdgeStyle/.append style = {->, >=latex, line width = 1.5mm, gray, shorten <= -2mm, shorten >= -1.5mm},
 	}
 	\newcommand{\getpic} [2] {\includegraphics[width = #1\textwidth]{#2}}
 	
 \begin{tikzpicture}[ampersand replacement = \&]
-\matrix[row 1/.style = {anchor = south}, row 2/.style = {anchor = north}, row sep = 1cm, column sep = 1.3cm]
+\matrix[row 1/.style = {anchor = south}, row 2/.style = {anchor = north}, row sep = 5mm, column sep = 5mm]
 {
 	\node [above delimiter = \{, label = {[yshift=1cm, align=center]above:{\footnotesize Scores in nine courses}}] 
 	(ybg) {\getpic{0.38}{../heatMapW}}; \& 
