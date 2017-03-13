@@ -1,0 +1,32 @@
+---
+title: "Simrel - Simulate multi-response multivariation data"
+author: "Raju Rimal"
+date: "14 June 2016"
+output: 
+  html_document: 
+    css: custom.css
+    theme: spacelab
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Situation
+
+- Big data, several statistical models, methods, techniques and algorithm - which one should I use?
+- I have multi-collinear predictors, which variable selection technique is suitable for me - usual answer: go and collect expensive samples enough to compare the technique.
+
+## What if
+
+- Computer can simulate the same nature of data I am dealing with so that I can find methods I can implement to my actual analysis
+- Computer can simulate multicollinear data with given underlying covariance structure so that I can compare which statistical models should I implement
+
+<div class = "container-fluid">
+  <div class = "jumbotron">
+ <center><h2> Simrel </h2> is your solution</center>
+</div>
+</div>
+
+
+These are just few situations, it can be implemented in various simple to complex situations even extending to multipal response variables.

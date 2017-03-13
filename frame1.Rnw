@@ -1,1 +1,7 @@
 % !Rnw root = main.Rnw
+
+\begin{center}
+	\Huge \textsc{Simple tool for complex structure}
+\end{center}
+
+\vfill

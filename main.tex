@@ -1,4 +1,4 @@
-  \documentclass[9pt, final]{beamer}\usepackage[]{graphicx}\usepackage[]{color}
+\documentclass[9pt, final]{beamer}\usepackage[]{graphicx}\usepackage[]{color}
 %% maxwidth is the original width if it is less than linewidth
 %% otherwise use linewidth (to make sure the graphics do not exceed the margin)
 \makeatletter
@@ -53,18 +53,20 @@
   \usepackage[latin1]{inputenc}
   % \usepackage{grffile}
   \usepackage{graphics}
-  \usepackage{amsmath, amsthm, amssymb, latexsym, xcolor}
-  \usepackage{pgf, tikz}
-  \usetikzlibrary{arrows, matrix, positioning}
+  \usepackage{amsmath, amsthm, amssymb, latexsym}
+ 
   %\usepackage{times}\usefonttheme{professionalfonts}
-  
+	\usepackage{pgf, tikz}
+	\usetikzlibrary{arrows, matrix, positioning}
+	
+	  \usepackage{xcolor}
   \usepackage{mathpazo} % Palatino
   % \usepackage{avant}    % Avant Garde
   % \renewcommand{\familydefault}{\rmdefault}
   
 %  \usefonttheme[]{sansserif}
-  % \boldmath
-  \usepackage[orientation=portrait, size=a0, scale=2, grid]{beamerposter}               
+   % \boldmath
+  \usepackage[orientation=landscape, size=a0, scale=2, grid]{beamerposter}               
     \usepackage{array, booktabs, tabularx}
     \newcolumntype{Z}{>{\centering\arraybackslash}X} % centered tabularx columns
     \newcommand{\pphantom}{\textcolor{nmbucolor}} % phantom introduces a vertical space in p formatted table columns??!!  
@@ -94,9 +96,17 @@
 
 
 
+
+
 \begin{frame}[fragile]
 
 % !Rnw root = main.Rnw
+
+\begin{center}
+	\Huge \textsc{Simple tool for complex structure}
+\end{center}
+
+\vfill
 \end{frame}
 
 \end{document}

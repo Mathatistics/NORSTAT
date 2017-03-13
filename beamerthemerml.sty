@@ -8,9 +8,9 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\setbeamercolor{headline}{fg=white,bg=white}
-\setbeamercolor{footline}{fg=white}
-\setbeamerfont{footline}{size=\Large,series=\tt}
+\setbeamercolor{headline}{fg=white,bg=nmbucolor}
+\setbeamercolor{footline}{fg=white, bg=nmbucolor}
+%\setbeamerfont{footline}{size=\Large,series=\tt}
 \setbeamercolor{separation line}{bg=nmbucolor}
 \setbeamercolor{title in headline}{fg=white}
 \setbeamercolor{author in headline}{fg=white}
@@ -60,16 +60,34 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setbeamertemplate{headline}{  
 	\leavevmode
-	\tikz{
-		\node[inner sep=0] (image) at (0,0){\includegraphics[width=\paperwidth]{figure/header.png}};
-		\node[anchor = right, xshift = -3cm] at (image.right) {
-			\parbox{0.85\linewidth}{
-				\flushright
-				\usebeamercolor{title in headline}{\color{fg}\textbf{\LARGE{\inserttitle}}\\[2ex]}
-				\usebeamercolor{author in headline}{\color{fg}\large{\insertauthor}\\[1ex]}
-				\usebeamercolor{institute in headline}{\color{fg}\normalsize{\insertinstitute}\\[1ex]}
+	% \tikz{
+	% 	\node[inner sep=0] (image) at (0,0){\includegraphics[width=\paperwidth]{figure/header.png}};
+	% 	\node[anchor = west] at (image.west) {
+	% 		\parbox{\linewidth}{
+	% 			\flushright
+	% 			\usebeamercolor{title in headline}{\color{fg}\textbf{\LARGE{\inserttitle}}\\[2ex]}
+	% 			\usebeamercolor{author in headline}{\color{fg}\large{\insertauthor}\\[1ex]}
+	% 			\usebeamercolor{institute in headline}{\color{fg}\normalsize{\insertinstitute}\\[1ex]}
+	% 		}
+	% };
+	\hbox{
+		\begin{beamercolorbox}[wd=\paperwidth]{headline}
+			\vskip4ex
+			\centering
+			\parbox{0.95\paperwidth}{
+				\parbox{0.10\paperwidth}{
+					\includegraphics[width = 35em]{figure/logo.png}	
+				}
+				\parbox{0.85\paperwidth}{
+					\flushright
+					\usebeamercolor{title in headline}{\color{fg}\textbf{\LARGE{\inserttitle}}} \\[1em]\hfill
+					\usebeamercolor{author in headline}{\color{fg}\large{\insertauthor}} \\[1em]\hfill
+					\usebeamercolor{institute in headline}{\color{fg}\normalsize{\insertinstitute}}	
+				}
 			}
-	};
+			\vskip4ex
+		\end{beamercolorbox}
+	}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 %\setbeamertemplate{headline}{  
@@ -97,9 +115,9 @@
 %  \end{beamercolorbox}
 %}
 
-  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line head}
-%    \rule{0pt}{3pt}
-  \end{beamercolorbox}
+%  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line head}
+%%    \rule{0pt}{3pt}
+%  \end{beamercolorbox}
 }
 
 %   \setbeamertemplate{headline}{
@@ -122,16 +140,26 @@
   \end{beamercolorbox}
   
   \leavevmode%
-	\tikz{
-			\node[inner sep=0] (imagefooter) at (0,0){\includegraphics[width=\paperwidth]{figure/footer.png}};
-			\node at (imagefooter.center) {
-			  \begin{beamercolorbox}[ht=5ex,leftskip=1em,rightskip=1em]{author in head/foot}%
-			  	{\textsf{\bf \LARGE Norwegian University of Life Sciences}}
-			  	\hfill
-			  	\texttt{\bf raju.rimal@nmbu.no}
-			  	\vskip1ex
-			  \end{beamercolorbox}
-	}}
+  	\hbox{
+  		\begin{beamercolorbox}[wd=\paperwidth]{footline}
+  			\vskip1ex
+  			\hspace{4ex}
+  			\parbox{0.5\paperwidth}{
+  				\usebeamercolor{institute in headline}{\color{fg}\Large{\insertinstitute}}
+  			}
+  			\vskip1ex
+  		\end{beamercolorbox}
+  	}
+%	\tikz{
+%			\node[inner sep=0] (imagefooter) at (0,0){\includegraphics[width=\paperwidth]{figure/footer.png}};
+%			\node at (imagefooter.center) {
+%			  \begin{beamercolorbox}[ht=5ex,leftskip=1em,rightskip=1em]{author in head/foot}%
+%			  	{\textsf{\bf \LARGE Norwegian University of Life Sciences}}
+%			  	\hfill
+%			  	\texttt{\bf raju.rimal@nmbu.no}
+%			  	\vskip1ex
+%			  \end{beamercolorbox}
+%	}}
 %  \vskip0pt%
 %  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line foot}
 %    \rule{0pt}{3pt}
